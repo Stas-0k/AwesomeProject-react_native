@@ -6,44 +6,69 @@ import {
   Text,
   TextInput,
   View,
-  YellowBox,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
-import React from "react";
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-
+import React, { useState } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function App() {
- 
+  const [value, setValue] = useState("");
+  const [focus, setFocus] = useState(true)
+  const inputHandler = (text) => setValue(text);
+
+  const handleFocus = () => setFocus( true)
+
+ const handleBlur = () => setFocus( false)
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("./PhotoBG.png")}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        <View style={styles.regContainer}>
-          <View style={styles.photoCont}></View>
-          <Text style={styles.header}>Реєстрація</Text>
-          <TextInput style={styles.input} placeholder="Логін" />
-          <TextInput
-            style={styles.input}
-            placeholder="Адреса електронної пошти"
-          />
-          <TextInput style={styles.input} placeholder="Пароль" />
-          <Pressable style={styles.showBttn}>
-            <Text style={styles.textBttnShow}>Показати</Text>
-          </Pressable>
-          <Pressable style={styles.button}>
-            <Text style={styles.textBttn}>Зареєструватися</Text>
-          </Pressable>
-          <Icon style={styles.icon} name="plus" size={24} color="rgba(255, 108, 0, 1)" />
-          
-          <Text style={styles.underText}>Вже є акаунт? Увійти</Text>
-        </View>
-      </ImageBackground>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container} >
+        <ImageBackground
+          source={require("./PhotoBG.png")}
+          resizeMode="cover"
+          style={styles.image}
+        >
+          <KeyboardAvoidingView style={styles.regContainer} behavior={Platform.OS == "ios" ? "padding" : "height"}>
+            <View style={styles.photoCont}></View>
+            <Text style={styles.header}>Реєстрація</Text>
+            
+            <TextInput
+              style={[styles.input, {
+                borderColor: focus ? 'red' : 'black',
+              }]}
+              placeholder="Логін"
+              value={value}
+              onChangeText={inputHandler}   
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+            
+            <TextInput
+              style={styles.input}
+              placeholder="Адреса електронної пошти"
+            />
+            <TextInput style={styles.input} placeholder="Пароль" />
+            <Pressable style={styles.showBttn}>
+              <Text style={styles.textBttnShow}>Показати</Text>
+            </Pressable>
+            <Pressable style={styles.button}>
+              <Text style={styles.textBttn}>Зареєструватися</Text>
+            </Pressable>
+            <Icon
+              style={styles.icon}
+              name="plus"
+              size={24}
+              color="rgba(255, 108, 0, 1)"
+            />
+
+            <Text style={styles.underText}>Вже є акаунт? Увійти</Text>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -70,7 +95,6 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     width: "100%",
-    
   },
 
   regContainer: {
@@ -79,7 +103,8 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     marginTop: "auto",
-    position:'relative',
+    position: "relative",
+    justifyContent: "flex-end",
   },
 
   button: {
@@ -112,7 +137,7 @@ const styles = StyleSheet.create({
     color: "rgba(33, 33, 33, 1)",
   },
   underText: {
-    marginBottom: 78,
+    marginBottom: 50,
   },
 
   showBttn: {
@@ -120,7 +145,7 @@ const styles = StyleSheet.create({
     width: 72,
     position: "absolute",
     top: 335,
-    left:310, 
+    left: 310,
   },
 
   textBttnShow: {
@@ -130,14 +155,14 @@ const styles = StyleSheet.create({
   photoCont: {
     width: 120,
     height: 120,
-    backgroundColor: 'rgba(246, 246, 246, 1)',
+    backgroundColor: "rgba(246, 246, 246, 1)",
     borderRadius: 16,
-    position: 'absolute',
-    top:-60,
+    position: "absolute",
+    top: -60,
   },
-  icon:{
-    position: 'absolute',
+  icon: {
+    position: "absolute",
     top: 21,
-    left:258,
-  }
+    left: 258,
+  },
 });
