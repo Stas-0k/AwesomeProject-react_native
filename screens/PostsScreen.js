@@ -1,18 +1,19 @@
 import {  
   Text,  
-  View, 
+    View, 
   StyleSheet,
 } from "react-native";
 import React from "react";
 
 
-export default function App() { 
+export default function PostsScreen() { 
     return (
         <View style={styles.container}>
-            <Text>hi from App</Text>
+            <Text>hi from PostsScreen</Text>
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
   container: {

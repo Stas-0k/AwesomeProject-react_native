@@ -1,4 +1,4 @@
-import {  
+import {
   ImageBackground,
   Pressable,
   StyleSheet,
@@ -11,21 +11,18 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
 
-export default function RegistrationScreen() {
+export default function LoginScreen() {
   const [value, setValue] = useState("");
-  const [focus1, setFocus1] = useState(false);
+
   const [focus2, setFocus2] = useState(false);
   const [focus3, setFocus3] = useState(false);
 
   const inputHandler = (text) => setValue(text);
 
-  const handleFocus1 = () => setFocus1(true);
   const handleFocus2 = () => setFocus2(true);
   const handleFocus3 = () => setFocus3(true);
 
-  const handleBlur1 = () => setFocus1(false);
   const handleBlur2 = () => setFocus2(false);
   const handleBlur3 = () => setFocus3(false);
 
@@ -41,22 +38,7 @@ export default function RegistrationScreen() {
             style={styles.regContainer}
             behavior={Platform.OS == "ios" ? "padding" : "height"}
           >
-            <View style={styles.photoCont}></View>
-            <Text style={styles.header}>Реєстрація</Text>
-
-            <TextInput
-              style={[
-                styles.input,
-                {
-                  borderColor: focus1 ? "#FF6C00" : "#E8E8E8",
-                },
-              ]}
-              placeholder="Логін"
-              value={value}
-              onChangeText={inputHandler}
-              onFocus={handleFocus1}
-              onBlur={handleBlur1}
-            />
+            <Text style={styles.header}>Увійти</Text>
 
             <TextInput
               style={[
@@ -90,14 +72,8 @@ export default function RegistrationScreen() {
             <Pressable style={styles.button}>
               <Text style={styles.textBttn}>Зареєструватися</Text>
             </Pressable>
-            <Icon
-              style={styles.icon}
-              name="plus"
-              size={24}
-              color="rgba(255, 108, 0, 1)"
-            />
 
-            <Text style={styles.underText}>Вже є акаунт? Увійти</Text>
+            <Text style={styles.underText}>Немає акаунту? Зареєструватися</Text>
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
@@ -138,7 +114,7 @@ const styles = StyleSheet.create({
     position: "relative",
     justifyContent: "flex-end",
     borderTopLeftRadius: 25,
-    borderTopRightRadius:25,
+    borderTopRightRadius: 25,
   },
 
   button: {
@@ -165,20 +141,20 @@ const styles = StyleSheet.create({
 
   header: {
     marginBottom: 32,
-    marginTop: 92,
+    marginTop: 32,
     fontSize: 30,
     fontWeight: 500,
     color: "rgba(33, 33, 33, 1)",
   },
   underText: {
-    marginBottom: 50,
+    marginBottom: 100,
   },
 
   showBttn: {
     height: 19,
     width: 72,
     position: "absolute",
-    top: 335,
+    top: 200,
     left: 310,
   },
 
