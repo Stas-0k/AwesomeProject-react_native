@@ -13,18 +13,21 @@ import {
 import React, { useState } from "react";
 
 export default function LoginScreen() {
-  const [value, setValue] = useState("");
+ 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const [focus2, setFocus2] = useState(false);
-  const [focus3, setFocus3] = useState(false);
-
-  const inputHandler = (text) => setValue(text);
+  const [focus3, setFocus3] = useState(false);  
 
   const handleFocus2 = () => setFocus2(true);
   const handleFocus3 = () => setFocus3(true);
-
   const handleBlur2 = () => setFocus2(false);
   const handleBlur3 = () => setFocus3(false);
+
+  const onLogin = () => {
+    console.log(`Data: ${email}, ${password}`)
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -48,8 +51,8 @@ export default function LoginScreen() {
                 },
               ]}
               placeholder="Адреса електронної пошти"
-              value={value}
-              onChangeText={inputHandler}
+              value={email}
+              onChangeText={setEmail}
               onFocus={handleFocus2}
               onBlur={handleBlur2}
             />
@@ -61,15 +64,15 @@ export default function LoginScreen() {
                 },
               ]}
               placeholder="Пароль"
-              value={value}
-              onChangeText={inputHandler}
+              value={password}
+              onChangeText={setPassword}
               onFocus={handleFocus3}
               onBlur={handleBlur3}
             />
             <Pressable style={styles.showBttn}>
               <Text style={styles.textBttnShow}>Показати</Text>
             </Pressable>
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={onLogin}>
               <Text style={styles.textBttn}>Зареєструватися</Text>
             </Pressable>
 

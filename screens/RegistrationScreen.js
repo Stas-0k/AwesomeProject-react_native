@@ -14,20 +14,26 @@ import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function RegistrationScreen() {
-  const [value, setValue] = useState("");
+ 
   const [focus1, setFocus1] = useState(false);
   const [focus2, setFocus2] = useState(false);
   const [focus3, setFocus3] = useState(false);
 
-  const inputHandler = (text) => setValue(text);
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleFocus1 = () => setFocus1(true);
   const handleFocus2 = () => setFocus2(true);
   const handleFocus3 = () => setFocus3(true);
-
   const handleBlur1 = () => setFocus1(false);
   const handleBlur2 = () => setFocus2(false);
   const handleBlur3 = () => setFocus3(false);
+
+
+  const onRegister = () => {
+    console.log(`Data: ${login}, ${email}, ${password}`)
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,8 +58,8 @@ export default function RegistrationScreen() {
                 },
               ]}
               placeholder="Логін"
-              value={value}
-              onChangeText={inputHandler}
+              value={login}
+              onChangeText={setLogin}
               onFocus={handleFocus1}
               onBlur={handleBlur1}
             />
@@ -66,8 +72,8 @@ export default function RegistrationScreen() {
                 },
               ]}
               placeholder="Адреса електронної пошти"
-              value={value}
-              onChangeText={inputHandler}
+              value={email}
+              onChangeText={setEmail}
               onFocus={handleFocus2}
               onBlur={handleBlur2}
             />
@@ -79,8 +85,8 @@ export default function RegistrationScreen() {
                 },
               ]}
               placeholder="Пароль"
-              value={value}
-              onChangeText={inputHandler}
+              value={password}
+              onChangeText={setPassword}
               onFocus={handleFocus3}
               onBlur={handleBlur3}
             />
@@ -88,7 +94,7 @@ export default function RegistrationScreen() {
               <Text style={styles.textBttnShow}>Показати</Text>
             </Pressable>
             <Pressable style={styles.button}>
-              <Text style={styles.textBttn}>Зареєструватися</Text>
+              <Text style={styles.textBttn} onPress={onRegister}>Зареєструватися</Text>
             </Pressable>
             <Icon
               style={styles.icon}
