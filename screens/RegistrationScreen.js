@@ -9,11 +9,13 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  Button,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({navigation}) {
  
   const [focus1, setFocus1] = useState(false);
   const [focus2, setFocus2] = useState(false);
@@ -39,7 +41,7 @@ export default function RegistrationScreen() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <ImageBackground
-          source={require("./PhotoBG.png")}
+          source={require("../PhotoBG.png")}
           resizeMode="cover"
           style={styles.image}
         >
@@ -102,8 +104,10 @@ export default function RegistrationScreen() {
               size={24}
               color="rgba(255, 108, 0, 1)"
             />
-
-            <Text style={styles.underText}>Вже є акаунт? Увійти</Text>
+            <View style={styles.underCont}>
+              <Text style={styles.underText}>Вже є акаунт? </Text>              
+                <TouchableOpacity style={styles.navBttn}  onPress={() => navigation.navigate("Login")}><Text style={styles.navText}>Увійти</Text></TouchableOpacity>             
+              </View>
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
@@ -115,6 +119,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  
+  underCont: {    
+    display:'flex-box',    
+    marginBottom: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+  },
+  navBttn: {
+    color:'red',
+  },
+
+  navText:{
+    color:'teal',
+  },  
+  
   image: {
     flex: 1,
     justifyContent: "center",
@@ -176,9 +196,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: "rgba(33, 33, 33, 1)",
   },
-  underText: {
-    marginBottom: 50,
-  },
+  
 
   showBttn: {
     height: 19,

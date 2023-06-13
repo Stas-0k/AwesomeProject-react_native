@@ -9,10 +9,11 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
  
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -33,7 +34,7 @@ export default function LoginScreen() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <ImageBackground
-          source={require("./PhotoBG.png")}
+          source={require("../PhotoBG.png")}
           resizeMode="cover"
           style={styles.image}
         >
@@ -75,8 +76,10 @@ export default function LoginScreen() {
             <Pressable style={styles.button} onPress={onLogin}>
               <Text style={styles.textBttn}>Зареєструватися</Text>
             </Pressable>
-
-            <Text style={styles.underText}>Немає акаунту? Зареєструватися</Text>
+            <View style={styles.underCont}>
+              <Text style={styles.underText}>Немає акаунту? </Text>                
+              <TouchableOpacity style={styles.navBttn}  onPress={() => navigation.navigate("Registration")}><Text style={styles.navText}>Зареєструватися</Text></TouchableOpacity>
+              </View>
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
@@ -88,6 +91,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  underCont: {    
+    display:'flex-box',    
+    marginBottom: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center',
+  },
+  navBttn: {
+    color:'red',
+  },
+
+  navText:{
+    color:'teal',
+  },  
   image: {
     flex: 1,
     justifyContent: "center",
@@ -149,10 +166,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: "rgba(33, 33, 33, 1)",
   },
-  underText: {
-    marginBottom: 100,
-  },
-
+  
   showBttn: {
     height: 19,
     width: 72,
