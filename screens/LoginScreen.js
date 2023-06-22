@@ -28,6 +28,7 @@ export default function LoginScreen({navigation}) {
 
   const onLogin = () => {
     console.log(`Data: ${email}, ${password}`)
+    navigation.navigate("Home")
   }
 
   return (
@@ -74,7 +75,7 @@ export default function LoginScreen({navigation}) {
               <Text style={styles.textBttnShow}>Показати</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={onLogin}>
-              <Text style={styles.textBttn}>Зареєструватися</Text>
+              <Text style={styles.textBttn}>Увійти</Text>
             </Pressable>
             <View style={styles.underCont}>
               <Text style={styles.underText}>Немає акаунту? </Text>                

@@ -35,6 +35,7 @@ export default function RegistrationScreen({navigation}) {
 
   const onRegister = () => {
     console.log(`Data: ${login}, ${email}, ${password}`)
+    navigation.navigate("Home")
   }
 
   return (
