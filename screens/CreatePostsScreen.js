@@ -9,7 +9,7 @@ import React from "react";
 export default function CreatePostsScreen() { 
     return (
         <View style={styles.container}>
-            <Text>hi from PostsScreen</Text>
+            <Text>hi from CreatePostsScreen</Text>
         </View>
     )
 }

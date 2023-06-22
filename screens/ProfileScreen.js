@@ -9,7 +9,7 @@ import React from "react";
 export default function ProfileScreen() { 
     return (
         <View style={styles.container}>
-            <Text>hi from PostsScreen</Text>
+            <Text>hi from Profile</Text>
         </View>
     )
 }
