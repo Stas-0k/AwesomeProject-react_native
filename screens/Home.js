@@ -34,6 +34,7 @@ export default function Home() {
                 return <Ionicons name={iconName} size={size} color={color}/>
             }
         }}>
+            <Tabs.Screen name="Posts" component={PostsScreen} />
             <Tabs.Screen name="CreatePosts" component={CreatePostsScreen} />
             <Tabs.Screen name="Profile" component={ProfileScreen} />
             
